@@ -1,11 +1,12 @@
 .btn-circle {
     width: 10em;
   	height: 10em;
-  	line-height: 40px; /* adjust line height to align vertically*/
+  	/*line-height: 40px;*/ /* adjust line height to align vertically*/
   	padding:0;
   	border-radius: 50%;
   	background-color: #555555;
   	color:white;
+  	border-color: transparent;
 }
 
 .btn-circle:hover
@@ -17,9 +18,9 @@
 
 .btn-circle:focus
 {
-	background-color: #7F7F7F;
+	background-color: #50c878;
 	color:white;
-	border-color: none;
+	border: none;
 }
 
 .coll
@@ -32,4 +33,17 @@
     overflow: hidden;  /* "overflow: auto;" works just as well instead */
     width:100%; 
     padding: 2em;       /* Helps older versions of IE */
+}
+
+.modal-dialog {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+.modal-content {
+    height: 100%;
+    min-height: 100%;
+    height: auto;
+    border-radius: 0;
 }

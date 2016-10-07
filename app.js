@@ -35,6 +35,18 @@ app.use('/font',express.static(path.join(__dirname, 'public/fonts')));
 
 app.use('/', routes);
 app.use('/users', users);
+
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'empatmaret',
+  database : 'ajkuiz'
+});
+
+connection.connect();
+
+
+
 var clients=[];
 
 
@@ -53,24 +65,42 @@ io.on('connection', function(socket){
       }
   });
 
-  var usersApp=[];
+
+  function dbQuery(queryAction)
+  {
+    connection.query(queryAction, function(err, rows, fields) {
+      if (!err)
+        return rows;
+      else
+        return null;
+    });
+
+    connection.end();
+  }
  
 
   socket.on('getSoal', function(catSoal){
-      console.log(catSoal);
+      queryAct = "SELECT * from soalAjkuiz where kategori_ajkuiz ='"+catSoal+"'";
+      console.log(queryAct);
   });
 
-  socket.on('user', function(sock_id,name)
+  socket.on('user', function(sock_id,username)
   {
-      console.log('ID socket = '+sock_id+', with username = '+name);
+     
       var tmp_id = '/#'+sock_id;
       for (i in clients) {
         if(clients[i].id==tmp_id)
         {
-          clients[i].username=name;
+          clients[i].username=username;
+           console.log('ID socket = '+clients[i].id+', with username = '+clients[i].username);
         }
       }
 
+  });
+
+
+  socket.on('receiveClient', function(data){
+      console.log(data);
   });
 
 });

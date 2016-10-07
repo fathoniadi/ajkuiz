@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-  	
+  	<meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=0.7, user-scalable=0"/> <!--320-->
     <title>{{title}}</title>
     <link rel='stylesheet' href='css/style.css'/>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -16,15 +16,15 @@
   </head>
   <body>
   		{{{body}}}
-  <div id="myModal" class="modal fade modal-lg" role="dialog">
+  <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content" style="padding-top: 2em; padding-bottom: 2em">
-                <div class="modal-body">
-                    <form role="form" id="myForm">
+                <div class="modal-body" style="">
+                    <form role="form" id="myForm" style="width:60%; margin:0 auto;">
                       <div class="form-group">
                         <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
-                        <input type="text" class="form-control" id="username" placeholder="Enter username">
+                        <input type="text" class="form-control" id="username" style="" placeholder="Enter username">
                       </div>
                         <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Enter</button>
                     </form>
