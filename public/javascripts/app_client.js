@@ -1,4 +1,5 @@
 var socket = io();
+var supportVibrate = "vibrate" in navigator;
 
 $(document).ready(function(){
 
@@ -36,14 +37,16 @@ $(document).on('submit','#myForm', function(e){
 $(document).on('click','.but-ans', function(e){
 	e.preventDefault();
 
+	$('.but-ans').css('background-color','#555555');
+	$(this).css('background-color','#50c878');
 	//$('.but-ans').css('background-color','red');
-
+	var noSoal = $('#noSoal').text();
 	var answer = $(this).attr('value');
 	var username = $("#userApp").text();
 	var data = {	
 					'id': '/#'+socket.id,
 					'username':username,
-					'soal':null,
+					'soal':noSoal,
 					'jawaban':answer
 	};
 
@@ -52,3 +55,10 @@ $(document).on('click','.but-ans', function(e){
 	
 
 });
+
+socket.on('recvNoSoal', function(noSoal)
+{
+	$('.but-ans').css('background-color','#555555');
+	$('#noSoal').text(noSoal);
+	navigator.vibrate(1000);
+})

@@ -1,9 +1,9 @@
 .btn-circle {
-    width: 10em;
-  	height: 10em;
+    width: 17em;
+  	height: 8em;
+    margin: 1em;
   	/*line-height: 40px;*/ /* adjust line height to align vertically*/
   	padding:0;
-  	border-radius: 50%;
   	background-color: #555555;
   	color:white;
   	border-color: transparent;
@@ -23,17 +23,6 @@
 	border: none;
 }
 
-.coll
-{
-    float: left;
-    width: 25%;
-
-}
-.rows{
-    overflow: hidden;  /* "overflow: auto;" works just as well instead */
-    width:100%; 
-    padding: 2em;       /* Helps older versions of IE */
-}
 
 .modal-dialog {
     width: 100%;

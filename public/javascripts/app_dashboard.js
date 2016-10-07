@@ -31,6 +31,7 @@ function gantiSoal(noSoal,soalI)
 	console.log(soalI);
 	console.log("asdasd");
 	$("#noSoal").text(noSoal+1);
+	socket.emit('triggerNoSoal', noSoal+1);
 	$("#soalnya").text(soalI.soal_ajkuiz);
 	$("#pilihanA").text(soalI.opsiA_ajkuiz);
 	$("#pilihanB").text(soalI.opsiB_ajkuiz);

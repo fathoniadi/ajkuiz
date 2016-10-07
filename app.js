@@ -104,6 +104,10 @@ io.on('connection', function(socket){
       console.log(data);
   });
 
+  socket.on('triggerNoSoal', function(noSoal){
+      io.emit('recvNoSoal', noSoal);
+  });
+
 });
 
 
