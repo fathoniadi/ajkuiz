@@ -12,7 +12,7 @@ $(document).on('click', '.but-cat', function(e)
 	e.preventDefault();
 	var cat = $(this).attr('value');
 
-	$("#catSoal").text(cat);
+	$("#kategoriSoal").text(cat);
 	socket.emit('getSoal',cat);
 
 	$("#dashboardContent").css('display','');

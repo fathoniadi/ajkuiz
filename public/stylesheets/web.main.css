@@ -1,10 +1,35 @@
-.btn {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+.btn-circle {
+    width: 10em;
+  	height: 10em;
+  	line-height: 40px; /* adjust line height to align vertically*/
+  	padding:0;
+  	border-radius: 50%;
+  	background-color: #555555;
+  	color:white;
+}
+
+.btn-circle:hover
+{
+	color:#555555;
+	background-color: white;
+	border: 2px solid #555555;
+}
+
+.btn-circle:focus
+{
+	background-color: #7F7F7F;
+	color:white;
+	border-color: none;
+}
+
+.coll
+{
+    float: left;
+    width: 25%;
+
+}
+.rows{
+    overflow: hidden;  /* "overflow: auto;" works just as well instead */
+    width:100%; 
+    padding: 2em;       /* Helps older versions of IE */
 }

@@ -13,9 +13,8 @@ $(document).on('submit','#myForm', function(e){
 	if(name!='')
 	{
 		$("#clientContaint").css('display','');
-		$("#user").text(name);
+		$("#userApp").text(name);
 		$("#user-content").css('display','');
-
 		socket.emit('user', socket.id,name);
 		$('#myModal').modal('hide');
 	}
@@ -27,7 +26,8 @@ $(document).on('click','.but-ans', function(e){
 	e.preventDefault();
 
 	var answer = $(this).attr('value');
-	var username = $("#user").text();
+	var username = $("#userApp").text();
+	alert(username);
 	
 
 });
