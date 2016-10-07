@@ -66,22 +66,23 @@ io.on('connection', function(socket){
   });
 
 
-  function dbQuery(queryAction)
-  {
-    connection.query(queryAction, function(err, rows, fields) {
-      if (!err)
-        return rows;
-      else
-        return null;
-    });
-
-    connection.end();
-  }
  
 
   socket.on('getSoal', function(catSoal){
-      queryAct = "SELECT * from soalAjkuiz where kategori_ajkuiz ='"+catSoal+"'";
-      console.log(queryAct);
+        queryAct = "SELECT * from soalAjkuiz where kategori_ajkuiz ='"+catSoal+"'";
+        connection.query(queryAct, function(err, rows, fields) {
+        if (!err)
+        {
+            //console.log('Tidak Gagal');
+            console.log(rows);
+            io.emit('recvSoal',rows);
+        }
+        else
+        {
+            console.log('Gagal');
+            //return null;
+        }
+      });
   });
 
   socket.on('user', function(sock_id,username)

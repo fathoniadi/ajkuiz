@@ -36,6 +36,8 @@ $(document).on('submit','#myForm', function(e){
 $(document).on('click','.but-ans', function(e){
 	e.preventDefault();
 
+	//$('.but-ans').css('background-color','red');
+
 	var answer = $(this).attr('value');
 	var username = $("#userApp").text();
 	var data = {	
