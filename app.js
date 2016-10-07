@@ -65,22 +65,18 @@ io.on('connection', function(socket){
       }
   });
 
-
- 
-
   socket.on('getSoal', function(catSoal){
+        //sendUserApp();
         queryAct = "SELECT * from soalAjkuiz where kategori_ajkuiz ='"+catSoal+"'";
         connection.query(queryAct, function(err, rows, fields) {
         if (!err)
         {
-            //console.log('Tidak Gagal');
-            console.log(rows);
+            //console.log(rows);
             io.emit('recvSoal',rows);
         }
         else
         {
             console.log('Gagal');
-            //return null;
         }
       });
   });
@@ -101,7 +97,7 @@ io.on('connection', function(socket){
 
 
   socket.on('receiveClient', function(data){
-      console.log(data);
+      io.emit('recvClientAns', data);
   });
 
   socket.on('triggerNoSoal', function(noSoal){

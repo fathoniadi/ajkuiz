@@ -51,9 +51,6 @@ $(document).on('click','.but-ans', function(e){
 	};
 
 	socket.emit('receiveClient',data);
-	//alert(username);
-	
-
 });
 
 socket.on('recvNoSoal', function(noSoal)
