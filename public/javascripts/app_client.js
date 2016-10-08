@@ -30,6 +30,7 @@ $(document).on('submit','#myForm', function(e){
 	  	backdrop: 'static',
 	  	keyboard: true
 		});
+		$("#haiUser").text(username);
 		socket.emit('user', socket.id,username);
 		$('#myModal').modal('hide');
 	}
