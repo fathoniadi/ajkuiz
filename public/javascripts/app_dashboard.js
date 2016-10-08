@@ -108,6 +108,7 @@ socket.on('recvClientAns', function(data){
 			{
 				//console.log("lebih dari satu input");
 				userAns[i].jawaban = data.jawaban;
+				console.log(userAns[i].jawaban+"  "+data.soal);
 				flag_exist=1;
 				break;
 			}
@@ -157,7 +158,7 @@ $(document).on('click', '#but-start', function(e){
 	    $("#timerCountdown").text(counter);
 	    if (counter == 0) {
 	    	noSoal+=1;
-	    	if(noSoal==/*length_soal*/1) 
+	    	if(noSoal==length_soal) 
 	    	{
 	    		clearInterval(interval);
 	    		calcScore();
