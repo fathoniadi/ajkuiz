@@ -100,8 +100,9 @@ io.on('connection', function(socket){
       io.emit('recvClientAns', data);
   });
 
-  socket.on('triggerNoSoal', function(noSoal){
-      io.emit('recvNoSoal', noSoal);
+  socket.on('triggerNoSoal', function(noSoal, soalData){
+    //console.log(soalData);
+      io.emit('recvNoSoal', noSoal, soalData);
   });
 
 });

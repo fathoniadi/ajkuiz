@@ -53,9 +53,13 @@ $(document).on('click','.but-ans', function(e){
 	socket.emit('receiveClient',data);
 });
 
-socket.on('recvNoSoal', function(noSoal)
+socket.on('recvNoSoal', function(noSoal, soalData)
 {
 	$('.but-ans').css('background-color','#555555');
+	$('#opsiA').text(soalData.opsiA);
+	$('#opsiB').text(soalData.opsiB);
+	$('#opsiC').text(soalData.opsiC);
+	$('#opsiD').text(soalData.opsiD);
 	$('#noSoal').text(noSoal);
 	navigator.vibrate(1000);
 })

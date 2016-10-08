@@ -80,7 +80,10 @@ function gantiSoal(noSoal,soalI)
 	/*console.log(soalI);
 	console.log("asdasd");*/
 	$("#noSoal").text(noSoal+1);
-	socket.emit('triggerNoSoal', noSoal+1);
+
+	var dataSoal = {'opsiA':soalI.opsiA_ajkuiz, 'opsiB':soalI.opsiB_ajkuiz, 'opsiC':soalI.opsiC_ajkuiz,'opsiD':soalI.opsiD_ajkuiz};
+
+	socket.emit('triggerNoSoal', noSoal+1, dataSoal);
 	$("#soalnya").text(soalI.soal_ajkuiz);
 	$("#pilihanA").text(soalI.opsiA_ajkuiz);
 	$("#pilihanB").text(soalI.opsiB_ajkuiz);
