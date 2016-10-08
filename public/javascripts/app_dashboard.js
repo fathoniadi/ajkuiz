@@ -2,7 +2,11 @@ var socket = io.connect();
 var soal_ = [];
 var userAns=[];
 var userScore=[];
+var activate = '';
 $(document).ready(function(){
+	activate = setInterval(function() {
+	    socket.emit('statusHubungan', 800)
+	}, 1000);
 	$("#myModalCat").modal({
   	backdrop: 'static',
   	keyboard: true
@@ -149,10 +153,12 @@ $(document).on('click', '#but-start', function(e){
 	$("#myModalStart").modal('hide');
 	$("#dashboardContent").css('display','');
 
-	var counter = 10;
+	var counter = 15;
 	$("#timerCountdown").text(counter);
 	gantiSoal(noSoal,soal_[noSoal]);
 
+	clearInterval(activate)
+	socket.emit('statusHubungan', 200)
 	var interval = setInterval(function() {
 	    counter--;
 	    $("#timerCountdown").text(counter);
@@ -165,7 +171,7 @@ $(document).on('click', '#but-start', function(e){
 	    	}
 	        else 
 	        {		gantiSoal(noSoal,soal_[noSoal]);
-	        		counter = 10;
+	        		counter = 15;
 	        		$("#timerCountdown").text(counter);
 	        }
 	    }

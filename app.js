@@ -38,7 +38,7 @@ app.use('/users', users);
 
 var connection = mysql.createConnection({
   host     : 'localhost',
-  user     : 'root',
+  user     : 'ajkuiz',
   password : 'ajkuiz123!',
   database : 'ajkuiz'
 });
@@ -110,6 +110,10 @@ io.on('connection', function(socket){
       //console.log(userScore);
       io.emit('recvScore', userScore);
   });
+
+  socket.on('statusHubungan', function(status){
+    io.emit('status', status)
+  })
 
 });
 

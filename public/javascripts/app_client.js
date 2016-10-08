@@ -24,15 +24,23 @@ $(document).on('submit','#myForm', function(e){
 	var username =$('#username').val();
 	if(username!='')
 	{
-		$("#clientContaint").css('display','');
+		
 		$("#userApp").text(username);
-		$("#user-content").css('display','');
+		$("#myModalReady").modal({
+	  	backdrop: 'static',
+	  	keyboard: true
+		});
 		socket.emit('user', socket.id,username);
 		$('#myModal').modal('hide');
 	}
 	else alert("Nama tidak boleh kosong");
 });
-
+socket.on('status', function(status){
+	if (status == 200) {
+		$("#clientContaint").css('display','');
+		$("#myModalReady").modal('hide');
+	}
+})
 
 $(document).on('click','.but-ans', function(e){
 	e.preventDefault();
@@ -91,4 +99,5 @@ socket.on('recvScore', function(userScore){
   	keyboard: true
 	});
 })
+
 
