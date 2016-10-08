@@ -34,13 +34,17 @@ function calcScore()
 	for(i in userAns)
 	{
 		console.log("looping");
-		if(soal_[parseInt(userAns[i].soal)].jawaban_ajkuiz==userAns[i].jawaban)
+		if(soal_[parseInt(userAns[i].soal)-1].jawaban_ajkuiz==userAns[i].jawaban)
 		{
 			console.log(userScore[userAns[i].id]);
 			userScore[userAns[i].id]+=1;
 			console.log(userScore[userAns[i].id]);
 		}
+	/*	console.log(userAns[i]);
+		console.log(soal_[parseInt(userAns[i].soal)].jawaban_ajkuiz);*/
 	}
+
+	console.log(userScore);
 };
 
 socket.on('recvClientAns', function(data){
@@ -55,17 +59,18 @@ socket.on('recvClientAns', function(data){
 		var flag_exist=0;
 		for(i in userAns)
 		{
-			console.log(userAns[i].id+" "+data.id+" "+userAns[i].soal+" "+data.soal);
+			//console.log(userAns[i].id+" "+data.id+" "+userAns[i].soal+" "+data.soal);
 			if(userAns[i].id==data.id&&userAns[i].soal==data.soal)
 			{
-				console.log("lebih dari satu input");
+				//console.log("lebih dari satu input");
 				userAns[i].jawaban = data.jawaban;
 				flag_exist=1;
+				break;
 			}
 		}
 		if(flag_exist==0) 
 		{
-			console.log("belum input");
+			//console.log("belum input");
 			userAns.push(data);
 			userScore[data.id]=0;
 		}
@@ -93,7 +98,7 @@ $(document).on('click', '#but-start', function(e){
 	$("#myModalStart").modal('hide');
 	$("#dashboardContent").css('display','');
 
-	var counter = 30;
+	var counter = 10;
 	$("#timerCountdown").text(counter);
 	gantiSoal(noSoal,soal_[noSoal]);
 
@@ -102,10 +107,14 @@ $(document).on('click', '#but-start', function(e){
 	    $("#timerCountdown").text(counter);
 	    if (counter == 0) {
 	    	noSoal+=1;
-	    	if(noSoal==length_soal) clearInterval(interval);
+	    	if(noSoal==length_soal) 
+	    	{
+	    		clearInterval(interval);
+	    		calcScore();
+	    	}
 	        else 
 	        {		gantiSoal(noSoal,soal_[noSoal]);
-	        		counter = 30;
+	        		counter = 10;
 	        		$("#timerCountdown").text(counter);
 	        }
 	    }
