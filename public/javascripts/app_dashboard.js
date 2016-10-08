@@ -40,8 +40,6 @@ function calcScore()
 			userScore[userAns[i].id]+=1;
 			console.log(userScore[userAns[i].id]);
 		}
-	/*	console.log(userAns[i]);
-		console.log(soal_[parseInt(userAns[i].soal)].jawaban_ajkuiz);*/
 	}
 
 	console.log(userScore);
