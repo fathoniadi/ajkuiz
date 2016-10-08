@@ -62,4 +62,33 @@ socket.on('recvNoSoal', function(noSoal, soalData)
 	$('#opsiD').text(soalData.opsiD);
 	$('#noSoal').text(noSoal);
 	navigator.vibrate(1000);
+});
+
+
+socket.on('recvScore', function(userScore){
+	var tmp_id = '/#'+socket.id;
+	//console.log(userScore);
+	/*if( userScore[tmp_id].nilai!=undefined)
+	{
+		$("#userScore").text(userScore[tmp_id].nilai);
+	}
+	else $("#userScore").text(0);
+*/
+	var flag_score=0;
+	for(i in userScore)
+	{
+		if(userScore[i].id==tmp_id)
+		{
+			$("#userScore").text(userScore[i].nilai);
+			flag_score=1;
+			break;
+		}
+	}
+
+	if(flag_score==0) $("#userScore").text(0);
+	$("#myModalWinner").modal({
+  	backdrop: 'static',
+  	keyboard: true
+	});
 })
+

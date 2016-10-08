@@ -28,21 +28,63 @@ socket.on('recvSoal', function(soal){
 	$("#myModalStart").modal();
 });
 
-function calcScore()
+function findWinner()
 {
-	var length_soal = soal_.length;	
-	for(i in userAns)
+	var max = 0;
+	var tmp_user='';
+	for(index in userScore)
 	{
-		console.log("looping");
-		if(soal_[parseInt(userAns[i].soal)-1].jawaban_ajkuiz==userAns[i].jawaban)
+		if(max==0)
 		{
-			console.log(userScore[userAns[i].id]);
-			userScore[userAns[i].id]+=1;
-			console.log(userScore[userAns[i].id]);
+			max = userScore[index].nilai;
+			tmp_user = userScore[index];
+		}
+		else if(max<userScore[index].nilai)
+		{
+			max = userScore[index].nilai;
+			tmp_user = userScore[index];
 		}
 	}
 
-	console.log(userScore);
+	//console.log(userScore);
+	//console.log(tmp_user);
+	if(tmp_user!='') $('#theWinner').html("Selamat untuk <span style='font-weight:bold; font-size:24px'>"+tmp_user.username+"</span> mendapatkan skor tertinggi ("+tmp_user.nilai+")");
+	$("#myModalWinner").modal({backdrop: 'static',
+  	keyboard: true});
+}
+
+
+function sendScore()
+{
+	var tmpScore=[];
+	for(i in userScore)
+	{
+		tmpScore.push({'id':i,'nilai':userScore[i].nilai});
+	}
+
+	socket.emit('sendScore', tmpScore);
+
+
+}
+
+function calcScore()
+{
+	
+	for(i in userAns)
+	{
+		//console.log("looping");
+		if(soal_[parseInt(userAns[i].soal)-1].jawaban_ajkuiz==userAns[i].jawaban)
+		{
+			//console.log(userScore[userAns[i].id]);
+			userScore[userAns[i].id].nilai+=1;
+			//console.log(userScore[userAns[i].id]);
+		}
+	}
+
+	findWinner();
+	sendScore();
+
+	//console.log(userScore);
 };
 
 socket.on('recvClientAns', function(data){
@@ -50,7 +92,11 @@ socket.on('recvClientAns', function(data){
 	if(userAns.length==0)
 	{
 		userAns.push(data);
-		userScore[data.id]=0;
+		//console.log(data.username)
+		userScore[data.id]={
+			'username' : data.username,
+			'nilai': 0
+			};
 	}
 	else
 	{
@@ -70,7 +116,10 @@ socket.on('recvClientAns', function(data){
 		{
 			//console.log("belum input");
 			userAns.push(data);
-			userScore[data.id]=0;
+			userScore[data.id]={
+			'username' : data.username,
+			'nilai': 0
+			};
 		}
 	}
 });
@@ -108,7 +157,7 @@ $(document).on('click', '#but-start', function(e){
 	    $("#timerCountdown").text(counter);
 	    if (counter == 0) {
 	    	noSoal+=1;
-	    	if(noSoal==length_soal) 
+	    	if(noSoal==/*length_soal*/1) 
 	    	{
 	    		clearInterval(interval);
 	    		calcScore();

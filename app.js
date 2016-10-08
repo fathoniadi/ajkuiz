@@ -39,7 +39,7 @@ app.use('/users', users);
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
-  password : 'empatmaret',
+  password : 'ajkuiz123!',
   database : 'ajkuiz'
 });
 
@@ -103,6 +103,12 @@ io.on('connection', function(socket){
   socket.on('triggerNoSoal', function(noSoal, soalData){
     //console.log(soalData);
       io.emit('recvNoSoal', noSoal, soalData);
+  });
+
+  socket.on('sendScore', function(userScore)
+  {
+      //console.log(userScore);
+      io.emit('recvScore', userScore);
   });
 
 });
