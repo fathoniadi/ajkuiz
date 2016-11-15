@@ -38,8 +38,8 @@ app.use('/users', users);
 
 var connection = mysql.createConnection({
   host     : 'localhost',
-  user     : 'ajkuiz',
-  password : 'ajkuiz123!',
+  user     : 'root',
+  password : 'root',
   database : 'ajkuiz'
 });
 

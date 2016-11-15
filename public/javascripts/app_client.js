@@ -36,6 +36,7 @@ $(document).on('submit','#myForm', function(e){
 	}
 	else alert("Nama tidak boleh kosong");
 });
+
 socket.on('status', function(status){
 	if (status == 200) {
 		$("#clientContaint").css('display','');
